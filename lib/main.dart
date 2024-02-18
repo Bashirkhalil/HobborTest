@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_functionality/view/bloc/new_bloc.dart';
-import 'package:test_functionality/view/screen/user_page.dart';
+import 'package:test_functionality/view/screen/user_list_page.dart';
 import 'MyBlocObserver.dart';
 import 'injection_container.dart';
 import 'injection_container.dart' as di;
@@ -13,7 +13,7 @@ void main() async {
 
   Bloc.observer = MyBlocObserver();
 
-  await Future.wait([di.init() ,]);
+  await Future.wait([di.init()]);
 
   runApp(const MyApp());
 }
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers:  [
         BlocProvider(
-          create: (context) => UserBloc(),
+          create: (context) => sl<UserBloc>(),
 
         ),
       ],

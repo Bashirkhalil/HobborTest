@@ -1,43 +1,69 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:test_functionality/model/user_article.dart';
 
-abstract class UserState {}
+@immutable
+abstract class UserState extends Equatable {}
 
-class UserInitial extends UserState {}
-class UserLoadingState extends UserState {}
+class UserInitial extends UserState {
+  @override
+  List<Object?> get props => [];
+}
 
+class UserLoadingState extends UserState {
+  @override
+  List<Object?> get props => [];
+}
 
 class UserErrorState extends UserState {
-  String onError ;
+  final String onError;
+
   UserErrorState({required this.onError});
+
+  @override
+  List<Object?> get props => [onError];
 }
 
 //  user List success
 //------------------------------------------------------------
 class UserSuccessState extends UserState {
   List<User> userList = [];
-  UserSuccessState({required this.userList});
-}
 
+  UserSuccessState({required this.userList});
+
+  @override
+  List<Object?> get props => [userList];
+}
 
 //  user Delete success
 //------------------------------------------------------------
 class UserDeletedSuccessState extends UserState {
-  String msg ;
+  final String msg;
+
   UserDeletedSuccessState({required this.msg});
+
+  @override
+  List<Object?> get props => [msg];
 }
 
 //  user update success
 //------------------------------------------------------------
 class UserUpdatedSuccessState extends UserState {
-  String msg ;
-  UserUpdatedSuccessState({required this.msg});
-}
+  final String msg;
 
+  UserUpdatedSuccessState({required this.msg});
+
+  @override
+  List<Object?> get props => [msg];
+}
 
 //  user new success
 //------------------------------------------------------------
 class UserCreateSuccessState extends UserState {
-  String msg ;
-  UserCreateSuccessState({required this.msg});
-}
+  final String msg;
 
+  UserCreateSuccessState({required this.msg});
+
+  @override
+  List<Object?> get props => [msg];
+}

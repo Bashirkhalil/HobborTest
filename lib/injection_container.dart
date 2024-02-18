@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:get_it/get_it.dart';
 import 'package:test_functionality/view/bloc/new_bloc.dart';
@@ -9,26 +8,16 @@ final sl = GetIt.instance; //sl is referred to as Service Locator
 
 Future<void> init() async {
 
-  // register controller
-  registerController();
-
-
-  // Bloc
+  // register controller - Bloc
   registerBloc();
 
 }
 
-
-// Register blocs
 void registerBloc() {
-//  GetIt.I.registerLazySingleton<UserBloc>(() => UserBloc());
+
+  //  user bloc - user controller
+  sl.registerFactory<UserController>(() => UserController());
+  sl.registerLazySingleton<UserBloc>(() => UserBloc(mUserController: sl()));
+
 }
-
-
-// Register repositories
-void registerController() {
- //sl.registerLazySingleton<UserController>(() => UserController());
-}
-
-
 

@@ -5,6 +5,7 @@ import 'package:test_functionality/model/user_article.dart';
 import 'package:test_functionality/view/screen/user_edit_page.dart';
 import 'package:test_functionality/view/screen/user_new_page.dart';
 
+import '../../injection_container.dart';
 import '../bloc/new_bloc.dart';
 import '../bloc/news_event.dart';
 import '../bloc/user_state.dart';
@@ -18,16 +19,16 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  var mUserCubit = sl<UserBloc>();
+
   @override
   void initState() {
     super.initState();
+    mUserCubit.add(GetUserEvent("mikehsch@email.com"));
   }
 
   @override
   Widget build(BuildContext context) {
-    var mUserCubit = BlocProvider.of<UserBloc>(context);
-    mUserCubit.add(GetUserEvent("mikehsch@email.com"));
-
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -38,10 +39,10 @@ class _UserPageState extends State<UserPage> {
         ),
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("User List"),
+          title: const Text("User List"),
         ),
         body: BlocConsumer<UserBloc, UserState>(
-            listener: (context, state) {} ,
+            listener: (context, state) {},
             builder: (context, state) {
               print("state is ");
               print(state);
@@ -54,13 +55,11 @@ class _UserPageState extends State<UserPage> {
                 print("Data -> ${state.userList.length}");
                 print("Data -> ${state.userList[0].title}");
 
-                return buildUserList(mUserCubit, state.userList);
+                return buildUserList(state.userList);
               }
 
               if (state is UserDeletedSuccessState) {
-
-
-                if(state.msg=="successful"){
+                if (state.msg == "successful") {
                   Fluttertoast.showToast(
                       msg: "User Deleted successfully",
                       toastLength: Toast.LENGTH_SHORT,
@@ -71,7 +70,6 @@ class _UserPageState extends State<UserPage> {
                       fontSize: 16.0);
                   mUserCubit.add(GetUserEvent("mikehsch@email.com"));
                 }
-
               }
 
               return Center(
@@ -85,7 +83,7 @@ class _UserPageState extends State<UserPage> {
             }));
   }
 
-  buildUserList(mUserCubit, List<User> userList) {
+  buildUserList(List<User> userList) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: ListView.separated(
@@ -116,7 +114,7 @@ class _UserPageState extends State<UserPage> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop(); // Close dialog
-                              deleteTheCurrentUser(mUserCubit, user);
+                              deleteTheCurrentUser(user);
                             },
                             child: const Text("Delete"),
                           ),
@@ -155,8 +153,7 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
-  void deleteTheCurrentUser(mUserCubit, User user) =>
-      mUserCubit.add(DeleteUserEvent(user));
+  void deleteTheCurrentUser(User user) => mUserCubit.add(DeleteUserEvent(user));
 
   void goToEditPage(User user) => Navigator.push(
         context,

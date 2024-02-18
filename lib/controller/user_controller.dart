@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../common/constant.dart';
-import '../common/response.dart';
 import '../model/user_article.dart';
 
 class UserController {

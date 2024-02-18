@@ -1,26 +1,42 @@
-
+import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:test_functionality/model/user_article.dart';
 
-abstract class UserEvent {}
+@immutable
+abstract class UserEvent extends Equatable {}
 
 class GetUserEvent extends UserEvent {
-  String email ;
+  final String email;
+
   GetUserEvent(this.email);
+
+  @override
+  List<Object?> get props => [email];
 }
 
-
 class UpdateUserEvent extends UserEvent {
-  User user ;
+  final User user;
+
   UpdateUserEvent(this.user);
+
+  @override
+  List<Object?> get props => [user];
 }
 
 class DeleteUserEvent extends UserEvent {
-  User user ;
+  final User user;
+
   DeleteUserEvent(this.user);
+
+  @override
+  List<Object?> get props => [user];
 }
 
-
 class NewUserEvent extends UserEvent {
-  User user ;
+  final User user;
+
   NewUserEvent(this.user);
+
+  @override
+  List<Object?> get props => [user];
 }

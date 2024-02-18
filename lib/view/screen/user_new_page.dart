@@ -7,7 +7,6 @@ import 'package:test_functionality/view/bloc/news_event.dart';
 
 import '../../injection_container.dart';
 import '../bloc/user_state.dart';
-import '../widget/user_row.dart';
 
 class UserNewPage extends StatefulWidget {
 
@@ -19,7 +18,7 @@ class UserNewPage extends StatefulWidget {
 
 class _UserNewPage extends State<UserNewPage> {
 
-  late UserBloc mUserCubit ;
+   var mUserCubit  =  sl<UserBloc>();
 
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
@@ -42,7 +41,6 @@ class _UserNewPage extends State<UserNewPage> {
   @override
   Widget build(BuildContext context) {
 
-    mUserCubit = BlocProvider.of<UserBloc>(context);
 
     return Scaffold(
         appBar: AppBar(

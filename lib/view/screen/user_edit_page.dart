@@ -6,7 +6,6 @@ import 'package:test_functionality/view/bloc/new_bloc.dart';
 import 'package:test_functionality/view/bloc/news_event.dart';
 import 'package:test_functionality/view/bloc/user_state.dart';
 
-import '../../injection_container.dart';
 
 class UserEditPage extends StatefulWidget {
   final User user;
@@ -74,7 +73,7 @@ class _UserEditPageState extends State<UserEditPage> {
 
               return SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

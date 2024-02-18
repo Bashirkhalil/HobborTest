@@ -30,7 +30,7 @@ class _UserRowState extends State<UserRow> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -41,26 +41,26 @@ class _UserRowState extends State<UserRow> {
           CircleAvatar(
             backgroundImage: NetworkImage(widget.user.img_link),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.user.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   widget.user.description,
                   style: TextStyle(
                     color: Colors.grey[700],
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   widget.user.email,
                   style: TextStyle(
@@ -74,7 +74,7 @@ class _UserRowState extends State<UserRow> {
           Row(
             children: [
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.green,
                 ),
@@ -83,7 +83,7 @@ class _UserRowState extends State<UserRow> {
                 },
               ),
               IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.delete,
                     color: Colors.red,
                   ),
